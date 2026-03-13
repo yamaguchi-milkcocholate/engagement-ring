@@ -122,18 +122,31 @@
     margin-right: 8px;
   }
 
-  /* 4C circle */
-  .circle-letter {
-    width: 64px; height: 64px;
+  /* 4C header */
+  .c4-header {
     background: #3D2B3D;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 12px;
-    font-size: 28px;
-    font-weight: 700;
+    border-radius: 14px 14px 0 0;
+    margin: -24px -24px 16px;
+    padding: 14px 20px;
     color: #fff;
+  }
+  .c4-header .c4-title {
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .c4-header .c4-title .c4-sub {
+    font-weight: 400;
+    font-size: 13px;
+    color: #D4A574;
+  }
+  .c4-header .c4-stars {
+    font-size: 13px;
+    color: #D4A574;
+    margin-top: 4px;
+    font-weight: 600;
   }
   .card .label { text-align: center; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
   .card .sublabel { text-align: center; font-size: 11px; color: #7A6A7A; margin-bottom: 12px; }
@@ -340,12 +353,9 @@
 
     <!-- カラット -->
     <div class="card" style="margin-bottom:20px;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-        <div class="circle-letter" style="width:48px;height:48px;font-size:20px;flex-shrink:0;">カ</div>
-        <div>
-          <div class="label" style="text-align:left;">カラット <span style="font-weight:400;font-size:12px;color:#7A6A7A;">Carat = 大きさ</span></div>
-          <div class="priority" style="text-align:left;margin-top:2px;">重要度: ★★★</div>
-        </div>
+      <div class="c4-header">
+        <div class="c4-title">カラット <span class="c4-sub">Carat = 大きさ</span></div>
+        <div class="c4-stars">重要度: ⭐️⭐️⭐️</div>
       </div>
       <div class="desc-text" style="text-align:left;margin-bottom:12px;">婚約指輪の平均は0.2〜0.3ct。0.3ctが一番人気！カラットが大きいほど見た目のインパクトが増すよ。</div>
       <img src="4c/carat.png" alt="カラットサイズ比較" style="width:100%;border-radius:8px;">
@@ -353,12 +363,9 @@
 
     <!-- カット -->
     <div class="card" style="margin-bottom:20px;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-        <div class="circle-letter" style="width:48px;height:48px;font-size:20px;flex-shrink:0;">カ</div>
-        <div>
-          <div class="label" style="text-align:left;">カット <span style="font-weight:400;font-size:12px;color:#7A6A7A;">Cut = 輝き</span></div>
-          <div class="priority" style="text-align:left;margin-top:2px;">重要度: ★★★★（最重要！）</div>
-        </div>
+      <div class="c4-header">
+        <div class="c4-title">カット <span class="c4-sub">Cut = 輝き</span></div>
+        <div class="c4-stars">重要度: ⭐️⭐️⭐️⭐️（最重要！）</div>
       </div>
       <div class="desc-text" style="text-align:left;margin-bottom:12px;">輝きに直結する最も大事な要素。Excellentなら光を最大限に反射してキラキラに。Good以下だと光が逃げてしまう。</div>
       <img src="4c/cut.svg" alt="カットグレード比較" style="width:100%;border-radius:8px;">
@@ -366,12 +373,9 @@
 
     <!-- カラー -->
     <div class="card" style="margin-bottom:20px;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-        <div class="circle-letter" style="width:48px;height:48px;font-size:20px;flex-shrink:0;">カ</div>
-        <div>
-          <div class="label" style="text-align:left;">カラー <span style="font-weight:400;font-size:12px;color:#7A6A7A;">Color = 色味</span></div>
-          <div class="priority" style="text-align:left;margin-top:2px;">重要度: ★★</div>
-        </div>
+      <div class="c4-header">
+        <div class="c4-title">カラー <span class="c4-sub">Color = 色味</span></div>
+        <div class="c4-stars">重要度: ⭐️⭐️</div>
       </div>
       <div class="desc-text" style="text-align:left;margin-bottom:12px;">D（完全無色）〜 Z（黄色味あり）の23段階。G〜Hグレードなら肉眼では違いがわからないからコスパ◎</div>
       <img src="4c/color.png" alt="カラーグレード比較" style="width:100%;border-radius:8px;">
@@ -379,12 +383,9 @@
 
     <!-- クラリティ -->
     <div class="card" style="margin-bottom:20px;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-        <div class="circle-letter" style="width:48px;height:48px;font-size:20px;flex-shrink:0;">ク</div>
-        <div>
-          <div class="label" style="text-align:left;">クラリティ <span style="font-weight:400;font-size:12px;color:#7A6A7A;">Clarity = 透明度</span></div>
-          <div class="priority" style="text-align:left;margin-top:2px;">重要度: ★★</div>
-        </div>
+      <div class="c4-header">
+        <div class="c4-title">クラリティ <span class="c4-sub">Clarity = 透明度</span></div>
+        <div class="c4-stars">重要度: ⭐️⭐️</div>
       </div>
       <div class="desc-text" style="text-align:left;margin-bottom:12px;">内包物（インクルージョン）の少なさ。VS2〜SI1なら肉眼では全く見えないから、ここはコストを抑えてOK。</div>
       <img src="4c/clarity.svg" alt="クラリティグレード比較" style="width:100%;border-radius:8px;">
