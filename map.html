@@ -52,6 +52,13 @@
     background: #FFF5F0;
   }
 
+  .shop-card .brand-logo {
+    display: block;
+    max-width: 90px;
+    max-height: 28px;
+    object-fit: contain;
+    margin-bottom: 6px;
+  }
   .shop-card .name {
     font-size: 15px;
     font-weight: 700;
@@ -137,7 +144,8 @@ const shops = [
     access: "有楽町駅 徒歩5分",
     price: "21万円〜",
     type: "domestic",
-    feature: "150種以上のデザイン、セミオーダー"
+    feature: "150種以上のデザイン、セミオーダー",
+    logo: "logos/shiraishi.png"
   },
   {
     name: "アイプリモ 銀座本店",
@@ -147,7 +155,8 @@ const shops = [
     access: "銀座駅A13出口 徒歩2分",
     price: "25万〜35万円",
     type: "domestic",
-    feature: "120種以上、デザイン変更OK"
+    feature: "120種以上、デザイン変更OK",
+    logo: "logos/iprimo.svg"
   },
   {
     name: "エクセルコ ダイヤモンド 東京本店",
@@ -157,7 +166,8 @@ const shops = [
     access: "銀座駅 徒歩1分",
     price: "19万円〜",
     type: "domestic",
-    feature: "最高品質カット、コスパ◎"
+    feature: "最高品質カット、コスパ◎",
+    logo: "logos/exelco.png"
   },
   {
     name: "NIWAKA 銀座店",
@@ -167,7 +177,8 @@ const shops = [
     access: "銀座一丁目駅 徒歩1分",
     price: "20万円〜",
     type: "domestic",
-    feature: "京都発、和の美意識デザイン"
+    feature: "京都発、和の美意識デザイン",
+    logo: "logos/niwaka.svg"
   },
   {
     name: "4℃ ブライダル 銀座本店",
@@ -177,7 +188,8 @@ const shops = [
     access: "銀座一丁目駅 徒歩1分",
     price: "15万円〜",
     type: "domestic",
-    feature: "手頃な価格、普段使いしやすい"
+    feature: "手頃な価格、普段使いしやすい",
+    logo: "logos/4c.svg"
   },
   {
     name: "ケイウノ ブライダル 銀座本店",
@@ -187,7 +199,8 @@ const shops = [
     access: "銀座一丁目駅 徒歩2分",
     price: "20万円〜",
     type: "domestic",
-    feature: "フルオーダー対応、ディズニーコラボ"
+    feature: "フルオーダー対応、ディズニーコラボ",
+    logo: "logos/kuno.png"
   },
   {
     name: "ティファニー 銀座本店",
@@ -197,7 +210,8 @@ const shops = [
     access: "銀座一丁目駅 徒歩1分",
     price: "20万円台〜",
     type: "highbrand",
-    feature: "世界5大ジュエラー、憧れNo.1"
+    feature: "世界5大ジュエラー、憧れNo.1",
+    logo: "logos/tiffany.png"
   },
   {
     name: "カルティエ 銀座並木通り",
@@ -207,7 +221,8 @@ const shops = [
     access: "銀座駅 徒歩1分",
     price: "30万円台〜",
     type: "highbrand",
-    feature: "「王の宝石商」、圧倒的高級感"
+    feature: "「王の宝石商」、圧倒的高級感",
+    logo: "logos/cartier.png"
   }
 ];
 
@@ -244,6 +259,7 @@ shops.forEach((shop, i) => {
   // Marker
   const marker = L.marker([shop.lat, shop.lng], { icon: createIcon(shop.type) }).addTo(map);
   marker.bindPopup(`
+    ${shop.logo ? `<img src="${shop.logo}" alt="${shop.name}" style="max-width:80px;max-height:24px;display:block;margin-bottom:6px;object-fit:contain;">` : ''}
     <div class="popup-title">${shop.name}</div>
     <div class="popup-info">
       📍 ${shop.address}<br>
@@ -259,6 +275,7 @@ shops.forEach((shop, i) => {
   const card = document.createElement('div');
   card.className = 'shop-card';
   card.innerHTML = `
+    ${shop.logo ? `<img src="${shop.logo}" alt="${shop.name}" class="brand-logo">` : ''}
     <div class="name">${shop.name}</div>
     <span class="type ${shop.type === 'domestic' ? 'type-domestic' : 'type-highbrand'}">
       ${shop.type === 'domestic' ? '国内ブライダル専門店' : '海外ハイブランド'}
