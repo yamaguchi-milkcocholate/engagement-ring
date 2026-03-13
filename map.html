@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>銀座 婚約指輪ショップマップ</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', 'Hiragino Sans', sans-serif; background: #FDF6F0; }
+
+  .header {
+    background: linear-gradient(135deg, #3D2B3D, #8B4557);
+    color: #fff;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header h1 { font-size: 20px; font-weight: 600; }
+  .header .date { font-size: 13px; opacity: 0.8; margin-left: auto; }
+
+  .container { display: flex; height: calc(100vh - 56px); }
+
+  #map { flex: 1; min-width: 0; }
+
+  .sidebar {
+    width: 340px;
+    overflow-y: auto;
+    background: #FDF6F0;
+    border-left: 1px solid #E8D8D8;
+    padding: 12px;
+  }
+
+  .shop-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border-left: 4px solid #C4916E;
+  }
+  .shop-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+  .shop-card.active {
+    border-left-color: #8B4557;
+    background: #FFF5F0;
+  }
+
+  .shop-card .name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #3D2B3D;
+    margin-bottom: 4px;
+  }
+  .shop-card .type {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .type-domestic { background: #F0E6D2; color: #8B6914; }
+  .type-highbrand { background: #E8D0E8; color: #6D2E46; }
+
+  .shop-card .info { font-size: 12px; color: #666; line-height: 1.6; }
+  .shop-card .info span { display: block; }
+  .shop-card .price { font-size: 13px; color: #8B4557; font-weight: 600; margin-top: 4px; }
+
+  .legend {
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    background: #fff;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-domestic { background: #C4916E; }
+  .dot-highbrand { background: #8B4557; }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: 10px !important;
+    font-family: 'Segoe UI', 'Hiragino Sans', sans-serif;
+  }
+  .popup-title { font-size: 14px; font-weight: 700; color: #3D2B3D; margin-bottom: 4px; }
+  .popup-info { font-size: 12px; color: #555; line-height: 1.6; }
+
+  @media (max-width: 768px) {
+    .container { flex-direction: column; height: auto; }
+    #map { height: 55vh; }
+    .sidebar { width: 100%; height: 45vh; border-left: none; border-top: 1px solid #E8D8D8; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span style="font-size: 22px;">💍</span>
+  <h1>銀座 婚約指輪ショップマップ</h1>
+  <span class="date">3/14 下見用</span>
+</div>
+
+<div class="container">
+  <div id="map"></div>
+  <div class="sidebar">
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot dot-domestic"></span> 国内ブライダル専門店</div>
+      <div class="legend-item"><span class="legend-dot dot-highbrand"></span> 海外ハイブランド</div>
+    </div>
+    <div id="shop-list"></div>
+  </div>
+</div>
+
+<script>
+const shops = [
+  {
+    name: "銀座ダイヤモンドシライシ 銀座本店",
+    lat: 35.67215, lng: 139.76705,
+    address: "中央区銀座2-6-3",
+    hours: "平日 11:30〜20:00 / 土日祝 11:00〜20:00",
+    access: "有楽町駅 徒歩5分",
+    price: "21万円〜",
+    type: "domestic",
+    feature: "150種以上のデザイン、セミオーダー"
+  },
+  {
+    name: "アイプリモ 銀座本店",
+    lat: 35.67195, lng: 139.76745,
+    address: "中央区銀座2-6-9",
+    hours: "11:00〜19:30",
+    access: "銀座駅A13出口 徒歩2分",
+    price: "25万〜35万円",
+    type: "domestic",
+    feature: "120種以上、デザイン変更OK"
+  },
+  {
+    name: "エクセルコ ダイヤモンド 東京本店",
+    lat: 35.66975, lng: 139.76850,
+    address: "中央区銀座4-10-10",
+    hours: "11:00〜20:00",
+    access: "銀座駅 徒歩1分",
+    price: "19万円〜",
+    type: "domestic",
+    feature: "最高品質カット、コスパ◎"
+  },
+  {
+    name: "NIWAKA 銀座店",
+    lat: 35.67170, lng: 139.76815,
+    address: "中央区銀座2-8-3",
+    hours: "11:00〜20:00",
+    access: "銀座一丁目駅 徒歩1分",
+    price: "20万円〜",
+    type: "domestic",
+    feature: "京都発、和の美意識デザイン"
+  },
+  {
+    name: "4℃ ブライダル 銀座本店",
+    lat: 35.67230, lng: 139.76690,
+    address: "中央区銀座2-6-4 竹中銀座ビル2F",
+    hours: "11:00〜20:00",
+    access: "銀座一丁目駅 徒歩1分",
+    price: "15万円〜",
+    type: "domestic",
+    feature: "手頃な価格、普段使いしやすい"
+  },
+  {
+    name: "ケイウノ ブライダル 銀座本店",
+    lat: 35.67040, lng: 139.76920,
+    address: "中央区銀座2-11-5 陽光銀座セントラルビル1F",
+    hours: "11:00〜19:00",
+    access: "銀座一丁目駅 徒歩2分",
+    price: "20万円〜",
+    type: "domestic",
+    feature: "フルオーダー対応、ディズニーコラボ"
+  },
+  {
+    name: "ティファニー 銀座本店",
+    lat: 35.67165, lng: 139.76770,
+    address: "中央区銀座2-7-17",
+    hours: "11:00〜20:00",
+    access: "銀座一丁目駅 徒歩1分",
+    price: "20万円台〜",
+    type: "highbrand",
+    feature: "世界5大ジュエラー、憧れNo.1"
+  },
+  {
+    name: "カルティエ 銀座並木通り",
+    lat: 35.67065, lng: 139.76405,
+    address: "中央区銀座5-5-15",
+    hours: "11:00〜20:00",
+    access: "銀座駅 徒歩1分",
+    price: "30万円台〜",
+    type: "highbrand",
+    feature: "「王の宝石商」、圧倒的高級感"
+  }
+];
+
+// Initialize map
+const map = L.map('map', { zoomControl: true }).setView([35.6710, 139.7680], 16);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors',
+  maxZoom: 19
+}).addTo(map);
+
+// Custom icons
+function createIcon(type) {
+  const color = type === 'domestic' ? '#C4916E' : '#8B4557';
+  return L.divIcon({
+    className: 'custom-marker',
+    html: `<div style="
+      width: 28px; height: 28px;
+      background: ${color};
+      border: 3px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    "></div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+    popupAnchor: [0, -16]
+  });
+}
+
+// Add markers and sidebar cards
+const markers = [];
+const listContainer = document.getElementById('shop-list');
+
+shops.forEach((shop, i) => {
+  // Marker
+  const marker = L.marker([shop.lat, shop.lng], { icon: createIcon(shop.type) }).addTo(map);
+  marker.bindPopup(`
+    <div class="popup-title">${shop.name}</div>
+    <div class="popup-info">
+      📍 ${shop.address}<br>
+      🕐 ${shop.hours}<br>
+      🚶 ${shop.access}<br>
+      💰 ${shop.price}<br>
+      ✨ ${shop.feature}
+    </div>
+  `, { maxWidth: 280 });
+  markers.push(marker);
+
+  // Sidebar card
+  const card = document.createElement('div');
+  card.className = 'shop-card';
+  card.innerHTML = `
+    <div class="name">${shop.name}</div>
+    <span class="type ${shop.type === 'domestic' ? 'type-domestic' : 'type-highbrand'}">
+      ${shop.type === 'domestic' ? '国内ブライダル専門店' : '海外ハイブランド'}
+    </span>
+    <div class="info">
+      <span>📍 ${shop.address}</span>
+      <span>🕐 ${shop.hours}</span>
+      <span>🚶 ${shop.access}</span>
+      <span>✨ ${shop.feature}</span>
+    </div>
+    <div class="price">💰 ${shop.price}</div>
+  `;
+
+  card.addEventListener('click', () => {
+    map.flyTo([shop.lat, shop.lng], 17, { duration: 0.5 });
+    marker.openPopup();
+    document.querySelectorAll('.shop-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+  });
+
+  listContainer.appendChild(card);
+
+  // Marker click -> highlight card
+  marker.on('click', () => {
+    document.querySelectorAll('.shop-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+});
+
+// Fit bounds
+const group = L.featureGroup(markers);
+map.fitBounds(group.getBounds().pad(0.15));
+</script>
+
+</body>
+</html>

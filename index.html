@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一緒に選ぼう！婚約指輪ガイド</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #FDF6F0;
+    min-height: 100vh;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #3D2B3D 0%, #8B4557 60%, #C4916E 100%);
+    color: #fff;
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .hero-icon { font-size: 48px; margin-bottom: 16px; }
+  .hero h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+  .hero .subtitle { font-size: 20px; color: #D4A574; margin-bottom: 12px; }
+  .hero .tagline { font-size: 15px; opacity: 0.7; }
+
+  .content {
+    max-width: 720px;
+    margin: -30px auto 0;
+    padding: 0 20px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 5px solid #C4916E;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+  .card-icon {
+    font-size: 28px;
+    width: 52px;
+    height: 52px;
+    background: #FDF6F0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3D2B3D;
+  }
+  .card-desc {
+    font-size: 14px;
+    color: #7A6A7A;
+    line-height: 1.6;
+    margin-left: 66px;
+  }
+  .card-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: #F0E6D2;
+    color: #8B6914;
+    font-weight: 600;
+    margin-left: 66px;
+    margin-top: 8px;
+  }
+
+  .card.highlight { border-left-color: #8B4557; }
+
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: #B8A0B8;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-icon">💍</div>
+  <h1>一緒に選ぼう！</h1>
+  <div class="subtitle">婚約指輪ガイド</div>
+  <div class="tagline">ふたりで最高の一本を見つけよう</div>
+</div>
+
+<div class="content">
+  <a class="card highlight" href="presentation.html">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div class="card-title">提案資料を見る</div>
+    </div>
+    <div class="card-desc">
+      素材・ダイヤモンド・デザイン・ブランド・予算をわかりやすくまとめたガイド。まずはここから！
+    </div>
+    <span class="card-tag">おすすめ</span>
+  </a>
+
+  <a class="card" href="map.html">
+    <div class="card-header">
+      <div class="card-icon">🗺️</div>
+      <div class="card-title">銀座ショップマップ</div>
+    </div>
+    <div class="card-desc">
+      3/14 の下見用マップ。銀座にある8つの候補ブランド店舗の場所・営業時間・特徴が一覧できるよ。
+    </div>
+    <span class="card-tag">3/14 下見</span>
+  </a>
+</div>
+
+<div class="footer">
+  楽しみながら、一緒に選ぼう！
+</div>
+
+</body>
+</html>

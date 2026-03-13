@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>婚約指輪ガイド - 提案資料</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #F5EDE8;
+    color: #3D2B3D;
+  }
+
+  /* Navigation */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(61,43,61,0.95);
+    backdrop-filter: blur(8px);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav a { color: #D4A574; text-decoration: none; font-size: 13px; }
+  .nav a:hover { color: #fff; }
+  .nav .title { color: #fff; font-size: 15px; font-weight: 600; margin-left: 8px; }
+  .nav .spacer { flex: 1; }
+  .nav .page-links { display: flex; gap: 16px; }
+  .nav .page-links a { font-size: 12px; color: #B8A0B8; }
+  .nav .page-links a:hover { color: #D4A574; }
+
+  /* Slides */
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 40px;
+    scroll-margin-top: 56px;
+  }
+  .slide-inner {
+    max-width: 900px;
+    width: 100%;
+  }
+
+  /* Title slide */
+  .slide-title {
+    background: linear-gradient(135deg, #3D2B3D 0%, #8B4557 60%, #C4916E 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide-title::before, .slide-title::after {
+    content: ''; position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .slide-title::before { top: -80px; left: -80px; width: 250px; height: 250px; }
+  .slide-title::after { bottom: -60px; right: -60px; width: 200px; height: 200px; }
+  .slide-title h1 { font-size: 48px; color: #fff; margin-bottom: 8px; }
+  .slide-title .sub { font-size: 28px; color: #D4A574; margin-bottom: 16px; }
+  .slide-title .tag { font-size: 16px; color: #B8A0B8; }
+  .slide-title .icon { font-size: 56px; margin-bottom: 20px; }
+
+  /* Section title */
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #3D2B3D;
+    margin-bottom: 32px;
+    padding-bottom: 8px;
+  }
+
+  /* Cards grid */
+  .cards { display: grid; gap: 20px; }
+  .cards-2 { grid-template-columns: 1fr 1fr; }
+  .cards-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); }
+
+  .card-header-bar {
+    padding: 12px 16px;
+    border-radius: 14px 14px 0 0;
+    margin: -24px -24px 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+  }
+  .bg-dark { background: #3D2B3D; }
+  .bg-gold { background: #C4916E; }
+  .bg-rose { background: #8B4557; }
+
+  .card .big-text {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .card ul li {
+    padding: 6px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    border-bottom: 1px solid #F5EDE8;
+    color: #555;
+  }
+  .card ul li:last-child { border-bottom: none; }
+  .card ul li::before {
+    content: '•';
+    color: #C4916E;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  /* 4C circle */
+  .circle-letter {
+    width: 64px; height: 64px;
+    background: #3D2B3D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .card .label { text-align: center; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .card .sublabel { text-align: center; font-size: 11px; color: #7A6A7A; margin-bottom: 12px; }
+  .card .desc-text { text-align: center; font-size: 13px; color: #555; line-height: 1.6; }
+  .card .priority { text-align: center; font-size: 12px; color: #D4A574; margin-top: 10px; font-weight: 600; }
+
+  /* Design cards */
+  .design-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    background: rgba(139,69,87,0.1);
+    color: #8B4557;
+    font-weight: 600;
+    margin: 8px auto;
+    text-align: center;
+  }
+
+  /* Table */
+  .brand-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+  }
+  .brand-table th {
+    background: #3D2B3D;
+    color: #fff;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .brand-table td {
+    padding: 12px 16px;
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+  }
+  .brand-table tr:nth-child(odd) td { background: #FFF9F5; }
+  .brand-table tr:nth-child(even) td { background: #fff; }
+  .brand-table .brand-name { font-weight: 700; color: #3D2B3D; }
+
+  /* Budget */
+  .budget-circle {
+    width: 220px; height: 220px;
+    background: #3D2B3D;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+  .budget-circle .amount { font-size: 32px; font-weight: 700; color: #fff; }
+  .budget-circle .note { font-size: 13px; color: #B8A0B8; margin-top: 4px; }
+
+  .budget-layout { display: flex; gap: 40px; align-items: center; }
+  .budget-items { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+  .budget-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .budget-item .item-label { font-weight: 700; font-size: 15px; }
+  .budget-item .item-note { font-size: 11px; color: #7A6A7A; margin-top: 2px; }
+  .budget-item .item-amount { font-size: 16px; font-weight: 700; color: #8B4557; }
+
+  /* Next steps */
+  .slide-final {
+    background: linear-gradient(135deg, #3D2B3D 0%, #8B4557 60%, #C4916E 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .steps { display: flex; flex-direction: column; gap: 24px; margin: 32px auto; max-width: 500px; }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+  }
+  .step-num {
+    width: 48px; height: 48px;
+    background: #8B4557;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .step-text { font-size: 18px; color: #fff; }
+
+  .bottom-note {
+    text-align: center;
+    font-size: 14px;
+    color: #7A6A7A;
+    font-style: italic;
+    margin-top: 24px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cards-4 { grid-template-columns: 1fr 1fr; }
+    .cards-2 { grid-template-columns: 1fr; }
+    .budget-layout { flex-direction: column; }
+    .nav .page-links { display: none; }
+    .slide-title h1 { font-size: 32px; }
+    .slide-title .sub { font-size: 22px; }
+    .section-title { font-size: 24px; }
+  }
+  @media (max-width: 480px) {
+    .cards-4 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html">← トップ</a>
+  <span class="title">💍 婚約指輪ガイド</span>
+  <span class="spacer"></span>
+  <div class="page-links">
+    <a href="#materials">素材</a>
+    <a href="#diamond">ダイヤ</a>
+    <a href="#design">デザイン</a>
+    <a href="#brands">ブランド</a>
+    <a href="#budget">予算</a>
+    <a href="#next">次のステップ</a>
+  </div>
+</nav>
+
+<!-- Slide 1: Title -->
+<section class="slide slide-title" id="top">
+  <div class="slide-inner">
+    <div class="icon">💍</div>
+    <h1>一緒に選ぼう！</h1>
+    <div class="sub">婚約指輪ガイド</div>
+    <div class="tag">ふたりで最高の一本を見つけよう</div>
+  </div>
+</section>
+
+<!-- Slide 2: 素材 -->
+<section class="slide" id="materials">
+  <div class="slide-inner">
+    <div class="section-title">素材を選ぼう</div>
+    <div class="cards cards-2">
+      <div class="card">
+        <div class="card-header-bar bg-dark">プラチナ（Pt900/950）</div>
+        <div class="big-text" style="color:#8B4557;">70%の人が選ぶ定番素材</div>
+        <ul>
+          <li>白銀色の美しい輝き</li>
+          <li>変色に非常に強い</li>
+          <li>ダイヤの輝きを最も引き立てる</li>
+          <li>純度90〜95%と高い</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header-bar bg-gold">ゴールド（K18）</div>
+        <div class="big-text" style="color:#C4916E;">近年人気上昇中！</div>
+        <ul>
+          <li>イエロー・ピンク・ホワイトの3種</li>
+          <li>肌馴染みが良い</li>
+          <li>プラチナより硬くて丈夫</li>
+          <li>カジュアルにも合わせやすい</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom-note">どちらも耐久性◎ 普段のアクセの色味で選ぶのがおすすめ！</div>
+  </div>
+</section>
+
+<!-- Slide 3: ダイヤモンド 4C -->
+<section class="slide" id="diamond">
+  <div class="slide-inner">
+    <div class="section-title">ダイヤモンドの「4C」って？</div>
+    <div class="cards cards-4">
+      <div class="card">
+        <div class="circle-letter">カ</div>
+        <div class="label">カラット</div>
+        <div class="sublabel">Carat = 大きさ</div>
+        <div class="desc-text">婚約指輪の平均は0.2〜0.3ct。<br>0.3ctが一番人気！</div>
+        <div class="priority">重要度: ★★★</div>
+      </div>
+      <div class="card">
+        <div class="circle-letter">カ</div>
+        <div class="label">カット</div>
+        <div class="sublabel">Cut = 輝き</div>
+        <div class="desc-text">輝きに直結！<br>Excellentを選べば間違いなし</div>
+        <div class="priority">重要度: ★★★★</div>
+      </div>
+      <div class="card">
+        <div class="circle-letter">カ</div>
+        <div class="label">カラー</div>
+        <div class="sublabel">Color = 色味</div>
+        <div class="desc-text">D〜Zの23段階。<br>G〜Hなら肉眼で差なし</div>
+        <div class="priority">重要度: ★★</div>
+      </div>
+      <div class="card">
+        <div class="circle-letter">ク</div>
+        <div class="label">クラリティ</div>
+        <div class="sublabel">Clarity = 透明度</div>
+        <div class="desc-text">VS2〜SI1なら<br>内包物は見えない</div>
+        <div class="priority">重要度: ★★</div>
+      </div>
+    </div>
+    <div class="bottom-note">カットとカラットを優先して、カラーとクラリティは中間グレードでOK！</div>
+  </div>
+</section>
+
+<!-- Slide 4: デザイン -->
+<section class="slide" id="design">
+  <div class="slide-inner">
+    <div class="section-title">デザインの種類</div>
+    <div class="cards cards-4">
+      <div class="card" style="text-align:center;">
+        <div class="label" style="font-size:18px;">ソリティア</div>
+        <div class="design-tag">人気No.1（55%）</div>
+        <div class="desc-text">一粒ダイヤが主役。<br>シンプルで上品。<br>どんな服にも合う。</div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="label" style="font-size:18px;">メレ</div>
+        <div class="design-tag">人気2位</div>
+        <div class="desc-text">サイドに小さなダイヤ。<br>ソリティアより華やか。<br>全体の輝きUP。</div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="label" style="font-size:18px;">パヴェ</div>
+        <div class="design-tag">ゴージャス派に</div>
+        <div class="desc-text">アームにダイヤを敷き詰め。<br>キラキラ度MAX。<br>日常使いもOK。</div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="label" style="font-size:18px;">エタニティ</div>
+        <div class="design-tag">永遠の象徴</div>
+        <div class="desc-text">全周にダイヤを配置。<br>結婚指輪にも人気。<br>重ね付けにも◎</div>
+      </div>
+    </div>
+    <div class="bottom-note">他にもヘイロー（周囲をダイヤで囲む）やスリーストーン（3石）などもあるよ！</div>
+  </div>
+</section>
+
+<!-- Slide 5: ブランド比較 -->
+<section class="slide" id="brands">
+  <div class="slide-inner">
+    <div class="section-title">ブランド比較</div>
+    <table class="brand-table">
+      <thead>
+        <tr>
+          <th>ブランド</th>
+          <th>価格帯</th>
+          <th>特徴</th>
+          <th>こんな人に</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="brand-name">銀座ダイヤモンド<br>シライシ</td>
+          <td>21万〜</td>
+          <td>150種以上のデザイン<br>18000個のダイヤから選べる</td>
+          <td>選択肢を<br>重視したい</td>
+        </tr>
+        <tr>
+          <td class="brand-name">ティファニー</td>
+          <td>20万〜</td>
+          <td>世界5大ジュエラー<br>憧れブランドNo.1</td>
+          <td>ブランド力を<br>重視したい</td>
+        </tr>
+        <tr>
+          <td class="brand-name">カルティエ</td>
+          <td>30万〜</td>
+          <td>「王の宝石商」<br>圧倒的な高級感</td>
+          <td>高級ブランドが<br>好き</td>
+        </tr>
+        <tr>
+          <td class="brand-name">アイプリモ</td>
+          <td>25万〜35万</td>
+          <td>83万組以上の実績<br>後からデザイン変更OK</td>
+          <td>安心感を<br>重視したい</td>
+        </tr>
+        <tr>
+          <td class="brand-name">エクセルコ<br>ダイヤモンド</td>
+          <td>19万〜</td>
+          <td>カット品質No.1<br>コスパ最強</td>
+          <td>ダイヤの質を<br>重視したい</td>
+        </tr>
+        <tr>
+          <td class="brand-name">NIWAKA（俄）</td>
+          <td>20万〜</td>
+          <td>京都発・和の美意識<br>洗練されたデザイン</td>
+          <td>和テイストが<br>好き</td>
+        </tr>
+        <tr>
+          <td class="brand-name">4℃</td>
+          <td>15万〜</td>
+          <td>手頃な価格帯<br>普段使いしやすい</td>
+          <td>シンプルで<br>普段使いしたい</td>
+        </tr>
+        <tr>
+          <td class="brand-name">ケイウノ</td>
+          <td>20万〜</td>
+          <td>フルオーダー対応<br>世界にひとつだけ</td>
+          <td>オリジナルを<br>作りたい</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Slide 6: 予算 -->
+<section class="slide" id="budget">
+  <div class="slide-inner">
+    <div class="section-title">予算イメージ</div>
+    <div class="budget-layout">
+      <div class="budget-circle">
+        <div class="amount">30〜35万円</div>
+        <div class="note">総予算（オプション込み）</div>
+      </div>
+      <div class="budget-items">
+        <div class="budget-item">
+          <div>
+            <div class="item-label">指輪本体</div>
+            <div class="item-note">リング枠 + ダイヤモンド</div>
+          </div>
+          <div class="item-amount">25〜33万円</div>
+        </div>
+        <div class="budget-item">
+          <div>
+            <div class="item-label">サイズ調整</div>
+            <div class="item-note">多くのブランドで初回無料</div>
+          </div>
+          <div class="item-amount">0〜1万円</div>
+        </div>
+        <div class="budget-item">
+          <div>
+            <div class="item-label">刻印</div>
+            <div class="item-note">購入時は基本無料</div>
+          </div>
+          <div class="item-amount">0〜5千円</div>
+        </div>
+        <div class="budget-item">
+          <div>
+            <div class="item-label">クリーニング</div>
+            <div class="item-note">ほとんどのブランドで永久無料</div>
+          </div>
+          <div class="item-amount">0円</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-note">30万円は婚約指輪の一番人気の価格帯。十分にいい指輪が選べるよ！</div>
+  </div>
+</section>
+
+<!-- Slide 7: 次のステップ -->
+<section class="slide slide-final" id="next">
+  <div class="slide-inner">
+    <div style="font-size:48px; margin-bottom:16px;">❤️</div>
+    <h2 style="font-size:36px; color:#fff; margin-bottom:8px;">次のステップ</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">気になるブランド・デザインを教えてね</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">一緒にお店に行って試着してみよう</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">ふたりで「これだ！」を見つけよう</div>
+      </div>
+    </div>
+    <div style="font-size:18px; color:#D4A574; font-style:italic; margin-top:32px;">
+      楽しみながら、一緒に選ぼう！
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
