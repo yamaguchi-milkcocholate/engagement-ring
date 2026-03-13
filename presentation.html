@@ -288,6 +288,201 @@
   @media (max-width: 480px) {
     .cards-4 { grid-template-columns: 1fr; }
   }
+
+  /* Product cards */
+  .product-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+  .product-card:hover { transform: translateY(-2px); }
+  .product-card .product-img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background: #f9f5f2;
+    padding: 12px;
+  }
+  .product-card .product-body {
+    padding: 16px;
+  }
+  .product-card .product-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #3D2B3D;
+    margin-bottom: 2px;
+  }
+  .product-card .product-name-en {
+    font-size: 11px;
+    color: #7A6A7A;
+    margin-bottom: 8px;
+  }
+  .product-card .product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #8B4557;
+    margin-bottom: 8px;
+  }
+  .product-card .product-price .price-note {
+    font-size: 11px;
+    font-weight: 400;
+    color: #7A6A7A;
+  }
+  .product-card .product-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .product-card .product-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(139,69,87,0.1);
+    color: #8B4557;
+    font-weight: 600;
+  }
+  .product-card .product-desc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.6;
+  }
+  .product-source {
+    font-size: 11px;
+    color: #7A6A7A;
+    margin-top: 16px;
+    text-align: right;
+  }
+  .product-source a {
+    color: #8B4557;
+    text-decoration: none;
+  }
+  .product-source a:hover { text-decoration: underline; }
+  .cards-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  /* Local brand cards */
+  .local-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .local-card:hover { transform: translateY(-2px); }
+  .local-card .local-visual {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+  }
+  .local-card .local-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .local-card .local-visual .local-area {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.9);
+    color: #3D2B3D;
+    font-weight: 600;
+  }
+  .local-card .local-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .local-card .local-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3D2B3D;
+    margin-bottom: 2px;
+  }
+  .local-card .local-name-en {
+    font-size: 11px;
+    color: #7A6A7A;
+    margin-bottom: 10px;
+  }
+  .local-card .local-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .local-card .local-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .local-tag-method {
+    background: rgba(139,69,87,0.1);
+    color: #8B4557;
+  }
+  .local-tag-price {
+    background: rgba(196,145,110,0.15);
+    color: #9A6D4A;
+  }
+  .local-tag-time {
+    background: rgba(61,43,61,0.08);
+    color: #3D2B3D;
+  }
+  .local-card .local-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    flex: 1;
+  }
+  .local-card .local-detail {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #F5EDE8;
+    font-size: 12px;
+    color: #7A6A7A;
+  }
+  .local-card .local-detail span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .local-intro-box {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .local-intro-box .local-intro-icon {
+    font-size: 48px;
+    flex-shrink: 0;
+  }
+  .local-intro-box .local-intro-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+  }
+  .cards-local {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
 </style>
 </head>
 <body>
@@ -301,7 +496,13 @@
     <a href="#diamond">ダイヤ</a>
     <a href="#design">デザイン</a>
     <a href="#brands">ブランド</a>
+    <a href="#why3">厳選3社</a>
+    <a href="#shiraishi">シライシ</a>
+    <a href="#exelco">エクセルコ</a>
+    <a href="#niwaka">NIWAKA</a>
+    <a href="#local">地元工房</a>
     <a href="#budget">予算</a>
+    <a href="#schedule">スケジュール</a>
     <a href="#next">次のステップ</a>
   </div>
 </nav>
@@ -496,6 +697,415 @@
   </div>
 </section>
 
+<!-- Slide 5.3: なぜこの3ブランド？ -->
+<section class="slide" id="why3" style="min-height:auto; padding-bottom:20px;">
+  <div class="slide-inner">
+    <div class="section-title">なぜこの3ブランド？</div>
+    <div class="cards" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+      <div class="card" style="text-align:center; border-top:4px solid #3D2B3D;">
+        <div style="font-size:32px; margin-bottom:8px;">👑</div>
+        <div class="label" style="font-size:18px; margin-bottom:4px;">銀座ダイヤモンドシライシ</div>
+        <div class="design-tag" style="margin-bottom:12px;">王道・バランス型</div>
+        <div class="desc-text" style="text-align:left;">150種以上のデザイン × 18,000個のダイヤから選べるセミオーダー。日本初のブライダルジュエリー専門店で、迷ったらここ。</div>
+      </div>
+      <div class="card" style="text-align:center; border-top:4px solid #8B4557;">
+        <div style="font-size:32px; margin-bottom:8px;">💎</div>
+        <div class="label" style="font-size:18px; margin-bottom:4px;">エクセルコ ダイヤモンド</div>
+        <div class="design-tag" style="margin-bottom:12px;">ダイヤ品質重視</div>
+        <div class="desc-text" style="text-align:left;">ベルギー発、世界No.1のカット技術。同じ予算でもダイヤの輝きが段違い。「石の質にこだわりたい」人向け。</div>
+      </div>
+      <div class="card" style="text-align:center; border-top:4px solid #C4916E;">
+        <div style="font-size:32px; margin-bottom:8px;">🌸</div>
+        <div class="label" style="font-size:18px; margin-bottom:4px;">NIWAKA（俄）</div>
+        <div class="design-tag" style="margin-bottom:12px;">デザイン個性派</div>
+        <div class="desc-text" style="text-align:left;">京都発、和の美意識が光る唯一無二のデザイン。日本の情景をモチーフにした名前とストーリーが特徴的。</div>
+      </div>
+    </div>
+    <div class="bottom-note">3つの異なる軸で比較することで、自分に合うスタイルが見つかりやすくなるよ！</div>
+  </div>
+</section>
+
+<!-- Slide 5.5: シライシ おすすめ商品 -->
+<section class="slide" id="shiraishi" style="min-height:auto; padding-bottom:20px;">
+  <div class="slide-inner">
+    <div class="section-title">銀座ダイヤモンドシライシ<br><span style="font-size:18px;font-weight:400;color:#7A6A7A;">予算内おすすめ商品（0.3ct想定: 30〜35万円）</span></div>
+    <div class="cards-products">
+
+      <div class="product-card">
+        <img src="products/pure_brightness.png" alt="Pure Brightness" class="product-img">
+        <div class="product-body">
+          <div class="product-name">ピュア ブライトネス</div>
+          <div class="product-name-en">Pure Brightness</div>
+          <div class="product-price">260,000円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">ソリティア</span>
+            <span class="product-tag">ウェーブライン</span>
+            <span class="product-tag">PT</span>
+          </div>
+          <div class="product-desc">光を最大限取り込む繊細な造りで、より一層ピュアな輝きを放つウェーブラインのソリティア。シンプルで上品。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/fortune_link.png" alt="Fortune Link" class="product-img">
+        <div class="product-body">
+          <div class="product-name">フォーチュン リンク</div>
+          <div class="product-name-en">Fortune Link</div>
+          <div class="product-price">270,000円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">ソリティア</span>
+            <span class="product-tag">ウェーブ</span>
+            <span class="product-tag">PT</span>
+          </div>
+          <div class="product-desc">運命の絆をイメージ。緩やかなウェーブラインが指にフィットし、4本爪でサイドビューも美しいデザイン。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/holiminous.png" alt="Holiminous" class="product-img">
+        <div class="product-body">
+          <div class="product-name">ホリミナス</div>
+          <div class="product-name-en">Holiminous</div>
+          <div class="product-price">300,000円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">ソリティア</span>
+            <span class="product-tag">ストレート</span>
+            <span class="product-tag">PT</span>
+          </div>
+          <div class="product-desc">「ふたりのための神聖な輝き」。アームがダイヤに向かって絞られ、まるでダイヤが浮いているような美しいデザイン。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/bouquet_rococo.png" alt="Bouquet Rococo" class="product-img">
+        <div class="product-body">
+          <div class="product-name">ブーケ ロココ</div>
+          <div class="product-name-en">Bouquet Rococo</div>
+          <div class="product-price">310,000円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">メレ</span>
+            <span class="product-tag">花モチーフ</span>
+            <span class="product-tag">PT</span>
+          </div>
+          <div class="product-desc">花束をモチーフにした可愛らしいデザイン。メレダイヤとアームの絞りでシンプルながら華やかな雰囲気。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/wishing_flower.png" alt="Wishing Flower" class="product-img">
+        <div class="product-body">
+          <div class="product-name">ウィッシング フラワー</div>
+          <div class="product-name-en">Wishing Flower</div>
+          <div class="product-price">340,000円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">メレ</span>
+            <span class="product-tag">フラワー</span>
+            <span class="product-tag">PT</span>
+          </div>
+          <div class="product-desc">フラワーシャワーをイメージ。メレダイヤモンドの輝きで華やかさ抜群。花びらが舞うようなウェーブライン。</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="product-source">価格出典: <a href="https://hana-yume.net/ring/brand/5/engagement/" target="_blank">ハナユメ</a> ｜ 詳細: <a href="https://www.diamond-shiraishi.jp/engagering/" target="_blank">銀座ダイヤモンドシライシ公式</a></div>
+    <div class="bottom-note">※ 価格は最小カラット時の参考価格。0.3ct前後で+3〜5万円が目安です。</div>
+  </div>
+</section>
+
+<!-- Slide 5.6: エクセルコ おすすめ商品 -->
+<section class="slide" id="exelco" style="min-height:auto; padding-bottom:20px;">
+  <div class="slide-inner">
+    <div class="section-title">エクセルコ ダイヤモンド<br><span style="font-size:18px;font-weight:400;color:#7A6A7A;">予算内おすすめ商品（0.3ct想定: 30〜35万円）</span></div>
+    <div class="cards-products">
+
+      <div class="product-card">
+        <img src="products/exelco_optique.png" alt="Optique" class="product-img">
+        <div class="product-body">
+          <div class="product-name">オプティーク</div>
+          <div class="product-name-en">Optique</div>
+          <div class="product-price">290,000円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">ソリティア</span>
+            <span class="product-tag">ウェーブ</span>
+            <span class="product-tag">PT</span>
+          </div>
+          <div class="product-desc">光学をテーマにしたウェーブライン。サイドのメレダイヤがセンターストーンの輝きをさらに引き立てる。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/exelco_rayon.png" alt="Rayon de Lumière" class="product-img">
+        <div class="product-body">
+          <div class="product-name">レヨン ド リュミエール</div>
+          <div class="product-name-en">Rayon de Lumière</div>
+          <div class="product-price">290,000円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">ソリティア</span>
+            <span class="product-tag">ストレート</span>
+            <span class="product-tag">PT</span>
+          </div>
+          <div class="product-desc">「光の筋」を意味する名前。シンプルなストレートラインで、ダイヤ本来の輝きを最大限に活かすデザイン。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/exelco_remplir.png" alt="Remplir" class="product-img">
+        <div class="product-body">
+          <div class="product-name">ランプリール</div>
+          <div class="product-name-en">Remplir</div>
+          <div class="product-price">300,000円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">メレ</span>
+            <span class="product-tag">V字</span>
+            <span class="product-tag">PT</span>
+          </div>
+          <div class="product-desc">「満たす」を意味するフランス語。V字ラインにメレダイヤが美しく並び、指を長く美しく見せる効果も。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/exelco_excelsior.png" alt="Excelsior" class="product-img">
+        <div class="product-body">
+          <div class="product-name">エクセルシア</div>
+          <div class="product-name-en">Excelsior</div>
+          <div class="product-price">330,000円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">ソリティア</span>
+            <span class="product-tag">ストレート</span>
+            <span class="product-tag">PT</span>
+          </div>
+          <div class="product-desc">ブランド名を冠した看板モデル。1粒ダイヤを最も美しく見せるためだけに設計された究極のソリティア。</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="product-source">価格出典: <a href="https://hana-yume.net/ring/brand/4/engagement/" target="_blank">ハナユメ</a> ｜ 詳細: <a href="https://www.exelco.com/bridal_jewelry/engagering/" target="_blank">エクセルコ ダイヤモンド公式</a></div>
+    <div class="bottom-note">※ 価格は最小カラット時の参考価格。0.3ct前後で+3〜5万円が目安です。</div>
+  </div>
+</section>
+
+<!-- Slide 5.7: NIWAKA おすすめ商品 -->
+<section class="slide" id="niwaka" style="min-height:auto; padding-bottom:20px;">
+  <div class="slide-inner">
+    <div class="section-title">NIWAKA（俄）<br><span style="font-size:18px;font-weight:400;color:#7A6A7A;">予算内おすすめ商品（0.3ct想定: 30〜35万円）</span></div>
+    <div class="cards-products">
+
+      <div class="product-card">
+        <img src="products/niwaka_komorebi.jpg" alt="木洩日" class="product-img">
+        <div class="product-body">
+          <div class="product-name">木洩日</div>
+          <div class="product-name-en">KOMOREBI</div>
+          <div class="product-price">288,200円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">メレ</span>
+            <span class="product-tag">ウェーブ</span>
+            <span class="product-tag">Pt950</span>
+          </div>
+          <div class="product-desc">やわらかな光、水とたわむれ。揺らめく水面に輝く光をメレダイヤとウェーブラインで表現した美しいデザイン。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/niwaka_roka.jpg" alt="露華" class="product-img">
+        <div class="product-body">
+          <div class="product-name">露華</div>
+          <div class="product-name-en">ROKA</div>
+          <div class="product-price">291,500円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">メレ</span>
+            <span class="product-tag">ウェーブ</span>
+            <span class="product-tag">Pt950</span>
+          </div>
+          <div class="product-desc">朝に生まれる輝きの雫。朝露が光を受けて輝く瞬間をイメージ。繊細なウェーブラインが指を美しく見せる。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/niwaka_uizakura.jpg" alt="初桜" class="product-img">
+        <div class="product-body">
+          <div class="product-name">初桜</div>
+          <div class="product-name-en">UIZAKURA</div>
+          <div class="product-price">300,300円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">ソリティア</span>
+            <span class="product-tag">ウェーブ</span>
+            <span class="product-tag">Pt950</span>
+          </div>
+          <div class="product-desc">初々しさは薄紅の桜の如く。桜の花びらを思わせるやさしいウェーブラインのソリティアリング。</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="products/niwaka_karahana.jpg" alt="唐花" class="product-img">
+        <div class="product-body">
+          <div class="product-name">唐花</div>
+          <div class="product-name-en">KARAHANA</div>
+          <div class="product-price">313,500円〜 <span class="price-note">(税込)</span></div>
+          <div class="product-tags">
+            <span class="product-tag">メレ</span>
+            <span class="product-tag">花モチーフ</span>
+            <span class="product-tag">Pt950</span>
+          </div>
+          <div class="product-desc">その美しい花は運命の証。唐草模様をモチーフにメレダイヤを配した華やかなデザイン。</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="product-source">価格出典: <a href="https://www.niwaka.com/bridal/niwaka/engagement/" target="_blank">NIWAKA公式</a></div>
+    <div class="bottom-note">※ 価格はハードプラチナ（Pt950）の参考価格。ピンクゴールド・イエローゴールドも選べます。</div>
+  </div>
+</section>
+
+<!-- Slide 5.8: 神奈川ローカル工房 -->
+<section class="slide" id="local" style="min-height:auto; padding-bottom:20px;">
+  <div class="slide-inner">
+    <div class="section-title">神奈川ローカル工房<br><span style="font-size:18px;font-weight:400;color:#7A6A7A;">横浜・鎌倉エリアの手作り＆オーダーメイド</span></div>
+
+    <!-- イントロ -->
+    <div class="local-intro-box">
+      <div class="local-intro-icon">🏠</div>
+      <div class="local-intro-text">
+        大手ブランドだけじゃない選択肢として、<strong>地元・神奈川エリア</strong>のジュエリー工房もリサーチしました。<br>
+        手作り体験やフルオーダーなど、<strong>「ふたりだけのストーリー」</strong>を大切にしたい人にぴったりの工房が揃っています。
+      </div>
+    </div>
+
+    <div class="cards-local">
+
+      <!-- 鎌倉彫金工房 -->
+      <div class="local-card">
+        <div class="local-visual">
+          <img src="products/local/kamakura_chokin.jpg" alt="鎌倉彫金工房">
+          <span class="local-area">鎌倉 / 横浜元町</span>
+        </div>
+        <div class="local-body">
+          <div class="local-name">鎌倉彫金工房</div>
+          <div class="local-name-en">Kamakura Chokin Studio</div>
+          <div class="local-tags">
+            <span class="local-tag local-tag-method">手作り（鍛造）</span>
+            <span class="local-tag local-tag-price">8万円〜</span>
+            <span class="local-tag local-tag-time">当日〜2週間</span>
+          </div>
+          <div class="local-desc">月700組が来店する人気工房。プラチナをバーナーで熱し、ハンマーで叩いて自分たちで形づくる体験型。永久保証のアフターケア付き。</div>
+          <div class="local-detail">
+            <span>✅ 永久保証</span>
+            <span>💎 石代込み</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- renri -->
+      <div class="local-card">
+        <div class="local-visual">
+          <img src="products/local/renri.jpg" alt="renri レンリ">
+          <span class="local-area">横浜・関内</span>
+        </div>
+        <div class="local-body">
+          <div class="local-name">renri（レンリ）</div>
+          <div class="local-name-en">renri - Yokohama Kannai</div>
+          <div class="local-tags">
+            <span class="local-tag local-tag-method">手作り / オーダー</span>
+            <span class="local-tag local-tag-price">17.6万〜27万円</span>
+          </div>
+          <div class="local-desc">手作りコースとオーダーメイドコースの2択。デザイナーがヒアリングからデザイン画を起こしてくれる。予算に合わせたダイヤモンド提案あり。</div>
+          <div class="local-detail">
+            <span>🎨 デザイン画から制作</span>
+            <span>💰 予算内対応可</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ith -->
+      <div class="local-card">
+        <div class="local-visual">
+          <img src="products/local/ith.jpg" alt="ith イズ">
+          <span class="local-area">横浜元町</span>
+        </div>
+        <div class="local-body">
+          <div class="local-name">ith（イズ）</div>
+          <div class="local-name-en">ith - Yokohama Motomachi Atelier</div>
+          <div class="local-tags">
+            <span class="local-tag local-tag-method">フルオーダー</span>
+            <span class="local-tag local-tag-price">14.3万円〜</span>
+            <span class="local-tag local-tag-time">約2ヶ月</span>
+          </div>
+          <div class="local-desc">音楽や自然をモチーフにしたストーリー性あるデザイン。100種以上のサンプルから試着し、吉祥寺の自社工房で鍛造製法にて1点ずつ制作。</div>
+          <div class="local-detail">
+            <span>⚠️ 制作2ヶ月（3月中に注文要）</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 鶴 mikoto -->
+      <div class="local-card">
+        <div class="local-visual">
+          <img src="products/local/mikoto.jpg" alt="鶴 mikoto">
+          <span class="local-area">横浜元町</span>
+        </div>
+        <div class="local-body">
+          <div class="local-name">鶴（mikoto）</div>
+          <div class="local-name-en">mikoto - Yokohama Motomachi</div>
+          <div class="local-tags">
+            <span class="local-tag local-tag-method">セミ〜フルオーダー</span>
+            <span class="local-tag local-tag-price">18.7万円〜+ダイヤ</span>
+          </div>
+          <div class="local-desc">50,000通り以上のアレンジが可能。「日本製のものづくり」にこだわり、100種以上のサンプルから着け心地やダイヤの石座まで選べる。</div>
+          <div class="local-detail">
+            <span>🇯🇵 日本製こだわり</span>
+            <span>💍 5万通り+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRAFY -->
+      <div class="local-card">
+        <div class="local-visual">
+          <img src="products/local/crafy.jpg" alt="CRAFY クラフィ">
+          <span class="local-area">鎌倉</span>
+        </div>
+        <div class="local-body">
+          <div class="local-name">CRAFY（クラフィ）</div>
+          <div class="local-name-en">CRAFY - Kamakura</div>
+          <div class="local-tags">
+            <span class="local-tag local-tag-method">手作り</span>
+            <span class="local-tag local-tag-price">5万円台〜</span>
+            <span class="local-tag local-tag-time">即日〜1週間</span>
+          </div>
+          <div class="local-desc">制作ムービー撮影・誕生石3石・刻印・リングケースが全て無料特典。現金15%OFF割引あり。鎌倉デートと合わせて訪問できるロケーション。</div>
+          <div class="local-detail">
+            <span>🎬 ムービー撮影付き</span>
+            <span>✅ 永久保証</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 瑠花 -->
+      <div class="local-card">
+        <div class="local-visual">
+          <img src="products/local/luca.jpg" alt="ワークスタジオ瑠花">
+          <span class="local-area">鎌倉・由比ガ浜</span>
+        </div>
+        <div class="local-body">
+          <div class="local-name">ワークスタジオ瑠花</div>
+          <div class="local-name-en">Work Studio Luca - Yuigahama</div>
+          <div class="local-tags">
+            <span class="local-tag local-tag-method">手作り / フルオーダー</span>
+            <span class="local-tag local-tag-price">要問合せ</span>
+          </div>
+          <div class="local-desc">結婚指輪の原型職人が直接サポートする本格派工房。由比ガ浜の海が近い少人数制アトリエで、じっくり丁寧に制作できる。</div>
+          <div class="local-detail">
+            <span>👨‍🔧 原型職人が直接指導</span>
+            <span>🏖️ 由比ガ浜</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bottom-note">「鎌倉デート × 指輪作り体験」の組み合わせも素敵な思い出になるかも！</div>
+  </div>
+</section>
+
 <!-- Slide 6: 予算 -->
 <section class="slide" id="budget">
   <div class="slide-inner">
@@ -537,6 +1147,72 @@
       </div>
     </div>
     <div class="bottom-note">30万円は婚約指輪の一番人気の価格帯。十分にいい指輪が選べるよ！</div>
+  </div>
+</section>
+
+<!-- Slide 6.5: スケジュール -->
+<section class="slide" id="schedule" style="min-height:auto; padding-bottom:20px;">
+  <div class="slide-inner">
+    <div class="section-title">スケジュール感</div>
+    <div style="background:#fff; border-radius:14px; padding:32px; box-shadow:0 3px 15px rgba(0,0,0,0.06); margin-bottom:20px;">
+
+      <!-- セミオーダーの説明 -->
+      <div style="background:#FDF6F0; border-radius:12px; padding:20px; margin-bottom:24px; border-left:4px solid #C4916E;">
+        <div style="font-size:16px; font-weight:700; color:#3D2B3D; margin-bottom:8px;">セミオーダーって？</div>
+        <div style="font-size:14px; color:#555; line-height:1.8;">
+          3ブランドとも<strong>セミオーダー方式</strong>が基本。リングの枠（デザイン）とダイヤモンド（ルース）を別々に選んで組み合わせるスタイルです。<br>
+          「セミオーダーだから高い」ということはなく、<strong>既製品と同じ価格帯</strong>で、自分好みの組み合わせを選べるのがメリット。
+        </div>
+      </div>
+
+      <!-- タイムライン -->
+      <div style="font-size:16px; font-weight:700; color:#3D2B3D; margin-bottom:16px;">5/30 プロポーズまでの流れ</div>
+      <div style="position:relative; padding-left:32px;">
+        <!-- 縦ライン -->
+        <div style="position:absolute; left:11px; top:8px; bottom:8px; width:3px; background:linear-gradient(180deg, #C4916E, #8B4557);"></div>
+
+        <!-- Step 1 -->
+        <div style="position:relative; margin-bottom:24px;">
+          <div style="position:absolute; left:-28px; top:2px; width:20px; height:20px; border-radius:50%; background:#C4916E; border:3px solid #fff; box-shadow:0 0 0 2px #C4916E;"></div>
+          <div style="font-size:14px; font-weight:700; color:#C4916E;">3月中</div>
+          <div style="font-size:15px; font-weight:700; color:#3D2B3D; margin:4px 0 2px;">この資料を見て好みを相談</div>
+          <div style="font-size:13px; color:#555;">気になるブランド・デザインを絞り込もう</div>
+        </div>
+
+        <!-- Step 2 -->
+        <div style="position:relative; margin-bottom:24px;">
+          <div style="position:absolute; left:-28px; top:2px; width:20px; height:20px; border-radius:50%; background:#A86A6A; border:3px solid #fff; box-shadow:0 0 0 2px #A86A6A;"></div>
+          <div style="font-size:14px; font-weight:700; color:#A86A6A;">4月上旬</div>
+          <div style="font-size:15px; font-weight:700; color:#3D2B3D; margin:4px 0 2px;">一緒にお店へ来店・試着</div>
+          <div style="font-size:13px; color:#555;">実物を見て、指につけて確認。サイズ測定も。</div>
+        </div>
+
+        <!-- Step 3 -->
+        <div style="position:relative; margin-bottom:24px;">
+          <div style="position:absolute; left:-28px; top:2px; width:20px; height:20px; border-radius:50%; background:#8B4557; border:3px solid #fff; box-shadow:0 0 0 2px #8B4557;"></div>
+          <div style="font-size:14px; font-weight:700; color:#8B4557;">4月中旬</div>
+          <div style="font-size:15px; font-weight:700; color:#3D2B3D; margin:4px 0 2px;">デザイン＋ダイヤを決定・注文</div>
+          <div style="font-size:13px; color:#555;">セミオーダーで好みの組み合わせを選んで成約</div>
+        </div>
+
+        <!-- Step 4 -->
+        <div style="position:relative; margin-bottom:24px;">
+          <div style="position:absolute; left:-28px; top:2px; width:20px; height:20px; border-radius:50%; background:#6B3A5A; border:3px solid #fff; box-shadow:0 0 0 2px #6B3A5A;"></div>
+          <div style="font-size:14px; font-weight:700; color:#6B3A5A;">制作期間 3〜4週間</div>
+          <div style="font-size:15px; font-weight:700; color:#3D2B3D; margin:4px 0 2px;">リング製作・刻印</div>
+          <div style="font-size:13px; color:#555;">ブランドで仕上げ。刻印やシークレットストーン等のオプション追加も。</div>
+        </div>
+
+        <!-- Step 5 -->
+        <div style="position:relative;">
+          <div style="position:absolute; left:-28px; top:2px; width:20px; height:20px; border-radius:50%; background:#3D2B3D; border:3px solid #fff; box-shadow:0 0 0 2px #3D2B3D;"></div>
+          <div style="font-size:14px; font-weight:700; color:#3D2B3D;">5月中旬</div>
+          <div style="font-size:15px; font-weight:700; color:#3D2B3D; margin:4px 0 2px;">受け取り完了！</div>
+          <div style="font-size:13px; color:#555;">5/30 のプロポーズに余裕をもって間に合う</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-note">4月中に来店・注文すれば、5/30 に十分間に合います！</div>
   </div>
 </section>
 
